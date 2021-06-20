@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--<meta http-equiv="refresh" content="10; url=https://intense-wildwood-72190.herokuapp.com/indexcopy">-->
+    <meta http-equiv="refresh" content="10; url=http://localhost:<%= ports %>/indexcopy">
+    <title>Document</title>
+    <style>
+        @keyframes circlejump {
+            from, to {
+                bottom: 0px;
+                animation-timing-function: ease-out;
+            }
+            50% {
+                bottom: 200px;
+                animation-timing-function: ease-in;
+            }
+        }
+        @keyframes appear{
+            0%{
+                opacity: 0;
+            }
+            10%,50%,90%{
+                opacity:1;
+            }
+            100%{
+                opacity: 1;
+            }
+        }
+        span{
+            
+            animation: appear 3s 3s ease-out;
+            animation-duration: 3s;
+            border-radius: 50%;
+            width:30px;
+            height:30px;
+            background: purple;
+        }
+        div{
+            position:absolute;
+            border-radius:50%;
+            background:pink;
+            width:20px;
+            height:20px;
+        }
+        #one{
+            animation: circlejump 5s 1s;
+            -moz-animation: circlejump 5s 1s;
+            -webkit-animation: circlejump 5s 1s;
+            -o-animation: circlejump 5s 1s;
+        }
+        #two{
+            left:300px;
+            animation: circlejump 6s 2s;
+            -moz-animation: circlejump 6s 2s;
+            -webkit-animation: circlejump 6s 2s;
+            -o-animation: circlejump 6s 2s;
+        }
+        #three{
+            left:600px;
+            animation: circlejump 8s 4s;
+            -moz-animation: circlejump 8s 4s;
+            -webkit-animation: circlejump 8s 4s;
+            -o-animation: circlejump 8s 4s;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="one"></div>
+    <div id="two"></div>
+    <div id="three"></div>
+    <p> 사진을 업로드 중입니다.
+        <td>&#183;</td>&nbsp;&nbsp;
+        <td>&#183;</td>&nbsp;&nbsp;
+        <td>&#183;</td>&nbsp;&nbsp;
+    </p>
+    <script>
+        $(document).ready(function(){
+            $('span').fadeOut(1000, function(){
+                $('span').fadeIn(1000);
+            })
+        })
+    </script>
+</body>
+
+</html>

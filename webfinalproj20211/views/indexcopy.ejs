@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Page-Enter" content="blendTrans(Duration=0.3)" />
+    <meta http-equiv="Page-Exit" content="blendTrans(Duration=0.3)" />
+    <link rel="shortcut icon" type="image/x-icon" href="/img/titleimage9.ico"/>
+    <title>심리테스트 시작하기페이지</title>
+    <script type="text/javascript"
+        src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId="></script>
+    <style>
+        header {
+            position: static;
+            border-style: 1px dashed brown;
+            background-color: bisque;
+        }
+
+        sidebar {
+            position: relative;
+            left: 300px;
+            top: 0px;
+            border: 1px dotted red;
+            background-color: rgba(140, 185, 151, 0.486);
+            width: 400px;
+            height: 250px;
+        }
+        
+        #photo {
+            border: 1px solid black;
+            background: yellow;
+            width: 100px;
+            height: 100px;
+        }
+
+        #photo:hover {
+            transform-origin: 50% 50% 0px;
+            transform: translate(0px, 0px) rotate(-45deg) scale(0.7);
+            background: green;
+        }
+
+        #imagetoa {
+            border: 1px solid black;
+            background: pink;
+            width: 100px;
+            height: 100px;
+        }
+
+        #imagetoa:hover {
+            transform-origin: 50% 50% 0px;
+            transform: translate(0px, 0px) rotate(-45deg) scale(0.7);
+            background: purple;
+        }
+    </style>
+</head>
+
+<body>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <header>
+        <center style="background-image:url('/img/beep.png');background-size:50px;background-repeat:repeat-x">
+            <h1>&lt;심리테스트입니다. &gt;</h1>
+        </center>
+        <tbody></tbody>
+    </header>
+    <!--<p id="photo" style="content:''">
+    </p>-->
+
+    <div id="total" style="border-style: 3px solid brown;background-image: url('/img/heartbeat.jpeg');">
+        <audio src="/audio/island_audio.mp3" controls loop autoplay></audio>
+        <div id="expression">
+            <span style="border:4px solid rgb(255, 192, 203);font-family:Arial, Helvetica, sans-serif;font-size:1.5em;font-weight:bolder;background-image:url('/img/heartbeat.jpeg')">심리테스트를 하려면 토끼를 눌러주세요</span>
+            <p class="showImages">
+            <a href="#insertHere" target="_self" title="심리테스트하러가기" id="hi">
+                <img src="/img/poempoem.jpg" alt="이미지가 안 보입니다."/>
+            </a> 
+            <!--<a id="changeimage" href="#hello" target="if_sidebar">사진을 업로드하려면 눌러주세요.</a>-->
+            <iframe width="400" height="250" name="if_sidebar" frameborder="0">
+                
+            </iframe>
+            <!--<% addPhoto.forEach(function(elements){ %>
+            <span style="background-image: url('<%= elements %>')"></span>
+            <% }) %>-->
+            <ol id="hello">
+                <% photopost.forEach(function(elements){ %>
+                <image src='<%= elements.name %>' width="300px" height="200px" id="imagetoa"/>
+                <span><%= elements.location %></span>
+                <span><%= elements.category %></span>
+                <span><%= elements.third %></span>
+                <% }) %>
+            </ol>
+            </p>
+            <div class="container">
+                
+                <!--<p>
+                    <a href="#skin" target="if_sidebar">블로그스킨바꾸기</a>
+                </p>-->
+                <p id="skin" style="background-color:rgba(252, 249, 249, 0);width:300px;height:250px;">
+                </p>
+            </div>
+            <sidebar>
+                <span id="skins">
+                    <!--<form action="/idx" method="POST">
+                        <input type="color" name="color_value" value="#0000ff" />
+                        <input type="submit" value="선택완료" />
+                    </form>-->
+                </span>
+                <!--<iframe width="400" height="250" name="if_sidebar" frameborder="0"></iframe>-->
+                <!--<div id="map" style="width:100vh;height:400px;"></div>-->
+            </sidebar>
+
+        </div>
+    </div>
+    <script>
+        var questionary = [
+            '아메리카노','카페라떼','프라푸치노','에스프레소','카푸치노','카라멜 마키아토', '카페모카',
+        ];
+    </script>
+    <script>
+        var basePath = "/img/coffee";
+        var imgList = []
+        for(var i=0;i<7;i++){
+            var parse = parseInt(i)
+            imgList.push(basePath+i+".png");
+        }
+        for(var i=0;i<imgList.length;i++){
+            console.log(imgList[i]);
+        }
+        function method() {
+            var table = "";
+            var htmladd ="";
+            var i = 0;
+            //var tbody = document.querySelector('tbody');
+            //var label = document.getElementById('insertHere');
+            var p = document.getElementById('skin');
+            //for (var i = 0; i < imgList.length; i++) {
+            table = "";
+            //table += '<form action="/photo/post" method="post" enctype="multipart/form-data">';
+            table += '<form action="/coffee/post" method="post">';
+            table += '<label id="insertHere">';
+            table += '<h1> &lt; ';
+            table += '카페에서 어떤 음료를 주로 시키시나요?';
+            table += ' &gt;</h1>';
+            table += '<div style="height:1500px;width:1500px;border-radius:100px;margin-left:10px;margin-top:3px;margin-right:15px;border:8px solid rgba(70, 43, 1, 1);background:rgba(149, 89, 55, 1);">';
+            //table += '<tr>';
+            for(var i=0;i<7;i++){
+                htmladd += '<tr>';
+                htmladd += '<td>';
+                //htmladd += '&num';
+                //htmladd += i;
+                var imgName = '/img/coffee'+i+".PNG";
+                console.log(imgName);
+                var img_tag = `<image src=${imgName} width="300" height="300" id=${i}/>`;
+                //var img_tag = `<span style="background-image:url('${imgName}');background-size:300px;content:""" id=${i}></span>`;
+                htmladd += img_tag;
+                //console.log(img_tag);
+                htmladd += '<td>';
+                htmladd += `<button type="submit" name="coffeebtnid" value=${i}>`;
+                htmladd += questionary[i];
+                htmladd += '</button>';
+                htmladd += '</td>';
+                htmladd += '</tr>';
+                
+            }
+            /*var len  = imgList.length;
+
+            for(var i in len){
+                htmladd += '<tr>';
+                htmladd += '<td>';
+                htmladd += '&num';
+                htmladd += i;
+                htmladd += '<img';
+                htmladd += `width="300" height="300" id=${i}/>`;
+                htmladd += '<td>';
+                htmladd += `<button type="button" name=icecreamid value=${i}">`;
+                htmladd += questionary[i];
+                htmladd += '</button>';
+                htmladd += '</td>';
+                htmladd += '</tr>';
+                document.querySelector(`img#${i}`).setAttribute('src', String(imgList[i]));
+            }
+            */
+                //var htmladd = '<td>';
+                //htmladd += '&num;';
+                //htmladd += i;
+                //htmladd += '<input type="file" id="image" name="image"/><p/>';
+            //htmladd += '<select name="categories" id="categories">';
+            //htmladd += '<option value="1" selected></option>';
+            //htmladd += '<option value="2">2개</option>';
+            //htmladd += '</select><p/>';
+                /*if(i==1){
+                    htmladd += '<select name="locations" id="locations">';
+                    htmladd += '<option value="1" selected>쭉 뻗은 길</option>';
+                    htmladd += '<option value="2">구불거리는 오솔길</option>';
+                    htmladd += '</select><p/>';
+                }
+                if(i==2){
+                    htmladd += '<select name="third" id="third">';
+                    htmladd += '<option value="1" selected>큰 호화저택</option>';
+                    htmladd += '<option value="2">작은 오두막</option>';
+                    htmladd += '<option value="3">통나무로 만들어진 튼튼한 집</option>';
+                    htmladd += '<option value="4">절벽아래 있는 임시 움막</option>';
+                    htmladd += '</select><p/>';
+                }
+                */
+
+            
+            //htmladd += '<button type="submit" name="image_btn" value="img_upload" id="id_btn">';
+            //htmladd += 'img_upload';
+            //htmladd += '</button>'
+            //htmladd += `<button type="button" name="btn_id" id="id_" value=${i}>`;
+            //htmladd += i;
+            //htmladd += '</button></td>';
+            htmladd += '<td>';
+            htmladd += '<button type="button" name="fadeOutbtn" id="fadeOutbtn" value="업로드버튼">';
+            htmladd += 'fadeOutbtn';
+            htmladd += '</button></td>';
+            table += htmladd;
+            table += '</tr>';
+            table += '</div>';
+            table += '<tr>';
+            table += '<p id="insertThere">';
+            table += '</p>';
+            table += '</tr>';
+            table += '</label>';
+            table += '</form>';
+            //document.write(table, p);
+            $('p#skin').after(table);
+            }
+        //method();
+        //https://sweet-myo.tistory.com/168([script]화면전환시페이드(로딩시부드럽게화면전환))
+        async function method2() {
+            const value = await method();
+            $(document).ready(function () {
+                $('#id_').click(function () {
+                    $('header').fadeOut(2500, function () {
+                        $('.showImages').fadeIn(2500);
+                        const select_loc = document.querySelector("select[name='locations']");
+                        const value_loc = select_loc.value;
+                        const option_loc = select_loc.querySelector(`option[value='${value_loc}']`);
+                        const text_loc = option_loc.innerText;
+                        //console.log(text_loc);
+                        //const select_cate = document.querySelector("select[name='categories']");
+                        //const value_cate = select_cate.value;
+                        //const option_cate = select_cate.querySelector(`option[value='${value_cate}']`);
+                        //const text_cate = option_cate.innerText;
+                        //console.log(text_cate);
+                        //const select_third = document.querySelector("select[name='third']");
+                        //const value_third = select_third.value;
+                        //const option_third = select_third.querySelector(`option[value='${value_third}']`);
+                        //const text_third = option_third.innerText;
+                        $('#insertThere').html(text_loc + " " + text_cate+" "+text_third);
+                    });
+                });
+            });
+            //document.getElementById("id_btn").onclick = () => {
+            /* $('#id_btn').click(()=>{
+                //$('header').hide(()=>{
+                console.log('hello');
+                $('.showImages').fadeIn(2500);
+                const select = document.querySelector("select[name='locations']");
+                const value = select.value;
+                const option = select.querySelector(`option[value='${value}']`);
+                const text = option.innerText;
+                console.log(text);
+                //});
+            }); */
+        }
+        method2();
+        //async function method3(){
+        //    let promise = method();
+        //    let value = await promise;
+        //    method2(value)
+        //}
+        //method3();
+        //function showImg() {
+        //    document.getElementsByClassName('showImages').innerHTML = '<ul><% photopost.forEach(function(elements){%><li><%= elements.location %></li><li><%= elements.category %></li><% }) %></ul>';
+        //}
+        //showImg();
+        function showImg_pre() {
+            //var list = "#{photopost}";
+            //console.log('index.ejs');
+            //console.log(list);
+            for (var i in list) {
+                var html = '<td>';
+                html += list[i].location;
+                html += '</td>';
+                html += '<td>'
+                html += list[i].category;
+                html += '<td>';
+                //document.querySelector('.showImages').append(html);
+            }
+        }
+        //showImg_pre();
+    </script>
+    <script>
+
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            $("#chageSkin").click(function () {
+                $("#container").css('background-color', 'red');
+            });
+        });
+    </script>
+    <!--
+    <script>
+        var mapOptions = {
+            center: new naver.maps.LatLng(37.3595704, 127.105399),
+            zoom: 10
+        };
+
+        var map = new naver.maps.Map('map', mapOptions);
+    </script>-->
+    <!--<script>
+        //$(document).ready(function () {
+        //    $('#id_').click(function () {
+        //        $('header').fadeOut(2500, function () {
+        //            $('.showImages').fadeIn(2500);
+        //        });
+        //    });
+        //});
+    </script>-->
+    <!--<script>
+        $(document).ready(function () {
+            $('#fadeOutbtn').click(function () {
+                $('#total').fadeOut(2500, function () {
+                    $('#expression').fadeIn(2500);
+                });
+            });
+        });
+    </script>-->
+    <script>
+        jQuery(function($){
+            $("body").css("display", "none");
+            $("body").fadeIn(2000);
+            //$("a.a의아이디").click(function(event){
+            $("#fadeOutbtn").click(function(event){
+                event.preventDefault();
+                //linkLocation=this.href;
+                //linkLocation = 'https://intense-wildwood-72190.herokuapp.com/basic';
+                //linkLocation = 'http://localhost:4000/basic';
+                linkLocation = 'http://localhost:<%= ports %>/basic';
+                $("body").fadeOut(1000, redirectPage);
+            });
+            function redirectPage(){
+                window.location = linkLocation;
+            }
+        })
+        /*function getClickHandler(i){
+            jQuery(function($){
+                $("body").css("display", "none");
+                $("body").fadeIn(2000);
+                //$("a.a의아이디").click(function(event){
+                $("#fadeOutbtn").click(function(event){
+                    event.preventDefault();
+                    //linkLocation=this.href;
+                    linkLocation = 'http://localhost:4000/basic';
+                    $("body").fadeOut(1000, redirectPage);
+                });
+                function redirectPage(){
+                    window.location = linkLocation;
+                }
+            })
+        }
+        const buttonElement = document.querySelectorAll('#fadeOutbtn');
+        console.log(buttonElement);
+        for(var i=0;i<6;i++){
+            buttonElement[i].addEventListener('click', {
+                handleEvent: getClickHandler(i)
+            });
+        }*/
+    </script>
+    
+    <script>
+        var start = null;
+        var element = document.getElementById('hi');
+        element.style.position = 'absolute';
+
+        function step(timestamp) {
+        if (!start) start = timestamp;
+        var progress = timestamp - start;
+        element.style.left = Math.min(progress / 10, 200) + 'px';
+        if (progress < 2000) {
+            window.requestAnimationFrame(step);
+            $('#heartbeat')
+        }
+        }
+
+        window.requestAnimationFrame(step);
+    </script>
+</body>
+
+</html>

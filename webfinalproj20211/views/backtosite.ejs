@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="/img/titleimage9.ico"/>
+    <title>결과페이지</title>
+    <style>
+        *{
+            font-family:Arial, Helvetica, sans-serif;font-size:1.2em;font-weight:bolder;color:#FFFFF0;
+            background:rgb(88, 75, 57);
+        }
+        @keyframes circlejump {
+            from,to{
+                bottom: 0px;
+                animation-timing-function: ease-out;
+            }
+            50% {
+                bottom: 200px;
+                animation-timing-function: ease-in;
+            }
+        }
+        @keyframes appear{
+            0%{
+                opacity: 0;
+            }
+            10%,50%,90%{
+                opacity:1;
+            }
+            100%{
+                opacity: 1;
+            }
+        }
+        @keyframes fade{
+            0%,100%{
+                opacity: 0;
+            }
+            50%{
+                opacity: 1
+            }
+        }
+        span{
+            
+            animation: appear 3s 3s ease-out;
+            animation-duration: 3s;
+            border-radius: 50%;
+            width:30px;
+            height:30px;
+            background: purple;
+        }
+        div{
+            position:absolute;
+            border-radius:50%;
+            background:pink;
+            width:20px;
+            height:20px;
+        }
+        #one{
+            animation: circlejump 5s 1s infinite;
+            -moz-animation: circlejump 5s 1s infinite;
+            -webkit-animation: circlejump 5s 1s infinite;
+            -o-animation: circlejump 5s 1s infinite;
+        }
+        #two{
+            left:300px;
+            animation: circlejump 6s 2s infinite;
+            -moz-animation: circlejump 6s 2s infinite;
+            -webkit-animation: circlejump 6s 2s infinite;
+            -o-animation: circlejump 6s 2s infinite;
+        }
+        #three{
+            left:600px;
+            animation: circlejump 8s 4s infinite;
+            -moz-animation: circlejump 8s 4s infinite;
+            -webkit-animation: circlejump 8s 4s infinite;
+            -o-animation: circlejump 8s 4s infinite;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <div id="one"></div>
+    <div id="two"></div>
+    <div id="three"></div>
+    <p> 당신이 선택한 커피는
+        <td>&#183;</td>&nbsp;&nbsp;
+        <td>&#183;</td>&nbsp;&nbsp;
+        <td>&#183;</td>&nbsp;&nbsp;
+    </p>
+    <p id="show" visibility="hidden">
+       <%= id %>
+       <p id="inKorean">
+            <%= pid %>
+       </p>
+    </p>
+    <p id="exit">
+        <!--<button type="button" value="심리테스트페이지로" id="exitbtn" onclick="location.href=`https://intense-wildwood-72190.herokuapp.com/indexcopy`">심리테스트페이지로</button>-->
+        <!--<button type="button" value="심리테스트페이지로" id="exitbtn" onclick="location.href=`http://localhost:4000/indexcopy`">심리테스트페이지로</button>-->
+        <button type="button" value="심리테스트페이지로" id="exitbtn" onclick="location.href='http://localhost:<%= ports %>/indexcopy'">심리테스트페이지로</button>
+    </p>
+    <p id="exit">
+        <!--<button type="button" value="첫페이지로" id="exitbtn" onclick="location.href=`https://intense-wildwood-72190.herokuapp.com/maincopy`">첫페이지로</button>-->
+        <!--<button type="button" value="첫페이지로" id="exitbtn" onclick="location.href=`http://localhost:4000/maincopy`">첫페이지로</button>-->
+        <button type="button" value="첫페이지로" id="exitbtn" onclick="location.href='http://localhost:<%= ports %>/maincopy'">첫페이지로</button>
+    </p>
+    <script>
+        $(document).ready(function(){
+            $('span').fadeOut(1000, function(){
+                $('span').fadeIn(1000);
+            })
+        })
+    </script>
+    <script>
+        var questionary = [
+            '아메리카노','카페라떼','프라푸치노','에스프레소','카푸치노','카라멜 마키아토', '카페모카',
+        ];
+        var answers=[
+            '당신은 친근하며 어디에나 잘 적응합니다.<br/>평범하고 무난한 것을 선호합니다.',
+            '당신은 사색적이지만 가끔은 우유부단하며,<br/>안정적인 것을 추구합니다.',
+            '당신은 여유가 있고 활동적입니다.<br/>새로운 도전을 겁내는 경향이 있습니다.',
+            '당신은 도전적이며 리더십이 강하며 뭐든지 열심히 합니다<br/>감정 기복이 심하고 자기중심적입니다.',
+            '당신은 느긋하고 따뜻한 마음을 가졌지만,<br/>덜렁거리기도 합니다.',
+            '당신은 웃음이 많고 발랄합니다.<br/>작은 것에서도 즐거움을 찾으려 노력합니다.',
+            '당신은 사랑스럽고 창의적입니다.<br/>융통성이 높고 즉흥적이기도 합니다.'
+        ];
+        var basePath = "/img/coffee";
+        var imgList = []
+        for(var i=0;i<7;i++){
+            var parse = parseInt(i)
+            imgList.push(basePath+i+".PNG");
+        }
+        function method(callbackFunc){
+            var list = []
+            for(var i=0;i<7;i++){
+                console.log('/img/coffee'+`${i}.PNG`);
+                //console.log(document.querySelector('p#inKorean').innerHTML + ","+ String(i));
+                var variable = document.querySelector('p#inKorean').innerHTML;
+                list = variable.split('\n');
+                //console.log(list);// ["", "            0", "       "]
+                list = list[1].split(' ');
+                list = list[list.length-1];
+                if(list === String(i)){
+                    var $psect = $(`<p class="rP" style="background-image:url('/img/chocolate.jpg');background-repeat:repeat-x;background-size:800px;content="";"></p>`);
+                    $psect.insertAfter($('p#inKorean'));
+                    $psect.css('width','1500');
+                    $psect.css('height','500px');
+                    //var matchfile = imgList[i];
+                    //var list_temp = matchfile.split('.');
+                    //matchfile = list_temp[0]+".PNG";
+                    var matchfile = imgList[i];
+                    console.log("matchfile:"+matchfile);
+                    var $r = $(`<img src="${matchfile}" id="rPimg"/>`);
+                    $r.appendTo(".rP");
+                    //$('p#add').after('img').css('width','300px');
+                    //$('p#add').after('img').css('height','500px');
+                    //$('p#add').after('img').css('alt','이미지가 안 보입니다');
+                }
+            }
+            callbackFunc(list);
+        }
+        method((list)=>{
+            var $psect2 = $(`<p class="result" style="content:"";"><img src="${imgList[list]}"/></p>`);
+            $psect2.insertAfter($('p.rP'));
+            $psect2.css('animation','fade 20s ease infinite');
+
+            var $psect = $('img#rPimg');
+            var $psect2 = $('p#show');
+            var $psect3 = $('p#inKorean');
+            $('#show').html(questionary[list]);
+            $('#inKorean').html(answers[list]);
+            $psect.css('animation', 'fade 20s ease infinite');
+
+        });
+        
+    </script>
+</body>
+
+</html>

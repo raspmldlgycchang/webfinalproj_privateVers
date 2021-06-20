@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>심리테스트 첫 화면</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/img/titleimage9.ico"/>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <style>
+        @keyframes appear {
+            0%{
+                opacity:1;
+            }
+            10%{
+                opacity: 0.8;
+            }
+            20%{
+                opacity: 0.7;
+            }
+            30%{
+                opacity: 0.6;
+            }
+            40%{
+                opacity: 0.7;
+            }
+            50%{
+                opacity:0.8;
+            }
+            60%{
+                opacity:1;
+            }
+            70%{
+                opacity:0.8;
+            }
+            80%{
+                opacity:0.7;
+            }
+            90%{
+                opacity:0.8;
+            }
+            100%{
+                opacity:1;
+            }
+        }
+        @keyframes gradually{
+            0%{
+                clip:rect(0,0,399px,0);
+            }
+            30%{
+                clip:rect(0,360px,399px,0);
+            }
+            60%{
+                clip:rect(0,720px,399px,0);
+            }
+            90%{
+                clip:rect(0,1076px,399px,0);
+            }
+            100%{
+                clip:rect(0,1076px,399px,0);
+            }
+        }
+        @keyframes move{
+            0%{
+                transform:translate(0px,0px);
+            }
+            30%{
+                transform:translate(-12px,-12px);
+            }
+            60%{
+                transform:translate(-24px,-24px);
+            }
+            90%{
+                transform:translate(-12px,-12px);
+            }
+        }
+        @keyframes heartbeat{
+            0%{
+                transform: scale(0) rotate(45deg);
+                background:#f37b97;
+            }
+            50%{
+                transform: scale(1) rotate(45deg);
+                background:#ff3c69;
+            }
+            100%{
+                transform:scale(0) rotate(45deg);
+                background:#f77c99;
+                
+            }
+        }
+        @keyframes color{
+            0%{
+                opacity:1;
+            }
+            30%{
+                opacity:0.2;
+            }
+            60%{
+                opacity:1;
+            }
+            70%{
+                opacity:0.5;
+            }
+            80%{
+                opacity:0.8;
+            }
+            100%{
+                opacity:0.9;
+            }
+        }
+        .main{
+            background:linear-gradient(137deg, #fff6b7, #f77c99, #6578f2, #c2ffd8);
+            width:100%;
+            height:100vh;
+            animation: appear 16s ease infinite;
+            -webkit-animation: appear 16s ease infinite;
+            -moz-animation: appear 16s ease infinite;
+            -o-animation: appear 16s ease infinite;
+        }
+        .box{
+            width:150px;
+            height:150px;
+            border-radius:70%;
+            /*overflow: hidden;*/
+            background: radial-gradient(circle, white,blue,violet);
+            object-fit: fit;
+        }
+        .circle{
+            width:100%;
+            height:100%;
+            object-fit: fit;
+        }
+        .box2{
+            position:absolute;
+            width:1076px;
+            height:399px;
+            animation:gradually 6s ease infinite;
+            -webkit-animation: gradually 6s ease infinite;
+            -moz-animation: gradually 6s ease infinite;
+            -o-animation: gradually 6s ease infinite;
+        }
+        .btn{
+            font-family: 'Montserrat',sans-serif;
+            margin:0;
+            border-radius: 5px;
+        }
+        .arrow{
+            transform:rotateY(45deg);
+        }
+        .arrow:hover{
+            animation:move 1s ease infinite;
+        }
+        .heart::before{
+            content:"";
+            width: 200px;
+            height:200px;
+            position:absolute;
+            left:-50%;
+            transform:rotate(45deg);
+            border-radius: 50%;
+        }
+        .heart{
+            width: 200px;
+            height:200px;
+            position: relative;
+            transform:rotate(45deg);
+        }
+        .heart::after{
+            content:"";
+            width:200px;
+            height:200px;
+            position:absolute;
+            top:-50%;
+            transform:rotate(45deg);
+            border-radius: 50%;
+        }
+        .heartImg{
+            overflow: hidden;
+            width:100%;
+            height:100%;
+            animation:heartbeat 1s ease ; 
+        }
+        .heart,.heart::before,.heart::after{
+            animation: heartbeat 4.5s ease infinite;
+        }
+        .add_keyframe{
+            animation: color 1s ease infinite;
+        }
+    </style>
+</head>
+<body>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <div class="main">
+        <div class="box" style="background-color:rgba(187, 221, 187, 0.867)">
+            <img class="circle" src="/img/titleImage6.PNG" alt="이미지가 안보입니다."/>
+            <div class="box2">
+                <img src="/img/210605_4.png"/>
+                <p class="forbtnloc">
+            </div>
+            <div class="heart">
+                
+            </div>
+        </div>
+        <div style="visibility: hidden;" id="hidden">
+            <!--<a href="https://intense-wildwood-72190.herokuapp.com/indexcopy">심리테스트 페이지로 이동합니다.</a>-->
+            <a href="http://localhost:<%= ports %>/indexcopy">심리테스트 페이지로 이동합니다.</a>
+
+        </div>
+    </div>
+    
+    <script>
+        function getClickHandler(){
+            return function(){
+                var baseElem = document.querySelctor('.forbtnloc');
+                var j = i+1;
+                document.querySelector(`p.forbtnloc > button:nth-child(${j})`).animate(move, {duration:16000,iterations:Infinity});
+                console.log('success');
+            }
+        }
+        function getClickHandler2(){
+            return function(){
+                alert("hello!");
+            }
+        }
+        function method1(){
+        setTimeout(
+            function(){
+                $('.forbtnloc').after('<button type="button" id="startTest" "style:background:rgba(0,0,0,0.2)">시작하기</button>');
+                $('.forbtnloc').after('<p style="content:"" position:static;"></p>')
+                document.querySelector("#startTest").setAttribute("style", "background:linear-gradient(to top,#fff6b7, #f77c99, #6578f2, #c2ffd8);position:relative;left:20px;top:-25px;");
+                $('.forbtnloc').add('img');
+                var imageTag = document.querySelectorAll('img');
+                console.log(imageTag[0]);
+                console.log(imageTag[1]);
+                var imageTag_2 = imageTag[1]
+                imageTag = imageTag_2;
+                imageTag.setAttribute('src', '/img/arrowImage.png');
+                imageTag.setAttribute('class', 'arrow');
+                imageTag.setAttribute('style', 'position:relative;left:-10px;top:80px;width:50px;height:50px;');
+                const newBtn = document.createElement('button');
+                document.querySelector('.forbtnloc').append(newBtn);
+                buttonList = document.querySelectorAll('p.forbtnloc > buttons');
+                console.log(buttonList);
+                for(var i=0,ii=buttonList.length;i<ii;i++){
+                    //buttonList[i].addEventListener(onclick, getClickHandler(i));
+                    var j = i+1;
+                    document.querySelector(`p.btnforloc > buttons:nth-child(${j})`).addEventListener("click", getClickHandler,false);
+                }
+                function callbackFunc(){
+
+                }
+                function mypromise2(callbackFunc){
+                    //var $elem = $('button#btnforheartbtn');
+                    return callbackFunc();
+                }
+                function mypromise1(callbackFunc){
+                    var result = 1;
+                    var $input = $('<input type="button" id="btnforheartbtn" value="btnforheartbtn"/>');
+                    $input.insertAfter($(".heart"));
+                    return callbackFunc();
+                }  
+                mypromise1(()=>{
+                    var $btnver2Div = $('<div class="btnver2Div" style="background:linear-gradient(to top,#fff6b7, #f77c99, #6578f2, #c2ffd8);content:"""></div>');
+                    $btnver2Div.insertAfter($("#btnforheartbtn"));
+                    var $r = $('<input type="button" class="heartBtn" value="heartBtn"></input>');
+                    $r.appendTo(".btnver2Div");
+                    
+                    let queue = [
+                        function(){changeMe($('.heartBtn'),0)},
+                        function(){waitForMe($('.heartBtn'), 0)},
+                    ]
+
+                    function SerialCall(queue){
+                        var d = $.Deferred().resolve();
+                        while(queue.length>0){
+                            d = d.then(queue.shift());
+                        }
+                    }
+                    function changeMe($elem,someTime){
+                        return setTimeout(function(){
+                            $elem.attr("style", "background:linear-gradient(to top,#fff6b7, #f77c99, #6578f2, #c2ffd8)");
+                        },someTime);
+                    }
+                    function waitForMe($elem, someTime){
+                        //return document.querySelector('.heartBtn').addEventListener("click",function(event){
+                            //setTimeout(()=>{
+                            //    const $clicked = $('.box');
+                            //    console.log($clicked);
+                            //    //$clicked.fadeOut();
+                            //},0);
+                        //    const $clicked = $('.box');
+                        //    console.log($clicked);
+                        //    $clicked.fadeOut();
+                        //})
+                        console.log('before start executing waitforme func');
+                        document.querySelector("#startTest").addEventListener('click',function(){
+                            setTimeout(()=>{
+                                const $clicked = $('.box');
+                                $clicked.fadeToggle('fast');
+                                setTimeout(()=>{
+                                    goingtoweb();
+                                },5000)
+                            },0)
+                        })
+
+                        //return setTimeout(function(){
+                        //    $elem.on("click",function(){
+                        //        $(".box").fadeOut('fast');
+                        //    })
+                        //},someTime)
+                        //return setTimeout(function(){console.log("hellow");},0);
+                    }0
+                    function goingtoweb(){
+                        //var string = `<a href="http://localhost:34381/index">심리테스트 페이지로 이동합니다.</a>`;
+                        //document.write(string);
+
+                        $('#hidden').css({"visibility":"visible","display":"block"});
+
+                        //var string = `
+                        //<%= ports %>`;
+                        //document.write(string);
+                    }
+
+                    SerialCall(queue);
+
+                    //mypromise2(($element)=>{
+                    //mypromise2(()=>{
+                        //$element.attr('onclick', getClickHandler2);
+                        //$(document).on("click",".heartBtn",function(){
+                            //$('.box').fadeToggle(1500);
+                            //$('#startTest').fadeIn(1500);
+                            //$('#startTest').addClass('add_keyframe');
+                        //});
+                        
+                        //$('.heartBtn').click(function(){
+                        //            $('.box').fadeToggle();
+                        //});
+
+
+                        /*
+                        document.querySelector(".heartBtn").setAttribute("style", "background:linear-gradient(to top,#fff6b7, #f77c99, #6578f2, #c2ffd8)");
+                        document.querySelector(".heartBtn").addEventListener("click", function(){
+                        //$(".heartBtn").on("click",function(){
+                            $(".box").fadeOut('fast');
+                        })
+                        */
+
+
+                        /*
+                        let queue = [
+                            function(){
+                                setTimeout(function(){
+                                    //$element.attr("value", "hello");
+                                    //$element.html("hello");
+                                    document.querySelector(".heartBtn").setAttribute("style", "background:linear-gradient(to top,#fff6b7, #f77c99, #6578f2, #c2ffd8)");
+                                    
+                                    
+                                    document.querySelector(".heartBtn").addEventListener("click", function(){
+                                    //$(".heartBtn").on("click",function(){
+                                        //$(".heart").animate({top:"+100px"});
+                                        //$(".heart").animate({bottom:"+100px"});
+                                        //$(".heart").animate({width:"+100px"});
+                                        //$(".heart").animate({height:"+100px"});
+                                        setTimeout(function(){
+                                            $(".box").toggle('fast');
+                                        },
+                                        0)
+                                        //$('.box').hide().animate({height:"+200px"},500);
+                                    })
+                                    
+
+                                    
+                                },
+                                0
+                                );
+                            },
+
+                            function(){
+                                setTimeout(function(){
+                                    //document.querySelector(".heartBtn").addEventListener("click", function(){
+                                    $(".heartBtn").on("click",function(){
+                                        //$(".heart").animate({top:"+100px"});
+                                        //$(".heart").animate({bottom:"+100px"});
+                                        //$(".heart").animate({width:"+100px"});
+                                        //$(".heart").animate({height:"+100px"});
+                                        $(".box").toggle('fast');
+                                        //$('.box').hide().animate({height:"+200px"},500);
+                                    })
+                                },
+                                0
+                                );
+                            }
+
+                        ];
+                        */
+
+                        /*setTimeout(function(){
+                            //$element.attr("value", "hello");
+                            //$element.html("hello");
+                            document.querySelector(".heartBtn").setAttribute("style", "background:linear-gradient(to top,#fff6b7, #f77c99, #6578f2, #c2ffd8)");
+                            document.querySelector(".heartBtn").addEventListener("click", function(){
+                                $(".heart").animate({top:"+100px"});
+                                $(".heart").animate({bottom:"+100px"});
+                                $(".heart").animate({width:"+100px"});
+                                $(".heart").animate({height:"+100px"});
+                                $(".box").toggle('fast');
+                                //$('.box').hide().animate({height:"+200px"},500);
+                            })
+                        },
+
+                        0);*/
+//                    });
+                })
+            },
+        16000
+        );
+        }
+        method1();
+    </script>
+    
+</body>
+</html>
